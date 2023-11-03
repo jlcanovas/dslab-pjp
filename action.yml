@@ -1,6 +1,10 @@
 name: "DSLab submitter"
 description: "Submits an assignment to DSLab"
 inputs:
+  github_token:
+    description: 'Derivative token for using the GitHub REST API'
+    default: '${{ github.token }}'
+    required: true
   student:
     description: "The student doing the submission"
     required: true
@@ -19,7 +23,7 @@ runs:
     - name: checkout student repo
       uses: actions/checkout@v3
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ inputs.GITHUB_TOKEN }}
     - name: creates zip for the project
       run: zip -r pec.zip src/ 
       shell: bash
