@@ -18,7 +18,7 @@ runs:
       shell: bash
     - name: checkout student repo
       uses: actions/checkout@v3
-      secrets:
+      with:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: creates zip for the project
       run: zip -r pec.zip src/ 
@@ -30,5 +30,7 @@ runs:
         user: ${{ secrets.USER }}
         pass: ${{ secrets.PASS }}
       run: mvn compile exec:java -Dexec.args="$tenant $project $user $pass ${{ inputs.student }} pec.zip"
+      shell: bash
     - name: removes the zip file
       run: rm -f pec.zip
+      shell: bash
