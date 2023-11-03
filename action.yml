@@ -7,19 +7,15 @@ inputs:
     required: true
   tenant : 
     description: 'DSLab tenant'
-    default: ${{ secrets.TENANT }}
     required: true
   project : 
     description: 'DSLab project'
-    default: ${{ secrets.PROJECT }}
     required: true
   user: 
     description: 'User with permission to submit projects'
-    default: ${{ secrets.USER }}
     required: true
   pass: 
     description: 'User password'
-    default: ${{ secrets.PASS }}
     required: true
   student:
     description: "The student doing the submission"
