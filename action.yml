@@ -30,7 +30,7 @@ runs:
         java-version: "11"
         cache: "maven"
     - name: compile with Maven
-      run: mvn compile --file ${GITHUB_ACTION_PATH}/pom.xml
+      run: mvn compile --file pom.xml
       shell: bash
     - name: checkout student repo
       uses: actions/checkout@v3
