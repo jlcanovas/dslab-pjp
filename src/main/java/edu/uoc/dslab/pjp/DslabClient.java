@@ -39,6 +39,8 @@ import com.google.gson.JsonParser;
 public class DslabClient {
     private static boolean DISABLE_SSL = true;
     private static String DEFAULT_CHARSET = "UTF-8";
+
+    /** URL for DSLab */
     private static String HTTP_HOST = "https://dpcscodes.uoc.edu/dslab-api/";
 
     private static final Logger LOGGER = LogManager.getLogger(DslabClient.class);
@@ -217,7 +219,8 @@ public class DslabClient {
         String project = args[1];
         String username = args[2];
         String password = args[3];
-        String zip = args[4];
+        String student = args[4];
+        String zip = args[5];
 
         LOGGER.info("Starting DSLab client...");
         DslabClient client = new DslabClient();
@@ -230,17 +233,17 @@ public class DslabClient {
         }
         
         LOGGER.info("2/4: Submitting the project...");
-        String projectId = client.submit(HTTP_HOST+"projectes/desa/"+project, token, zip);
+        String projectId = client.submit(HTTP_HOST+"projectes/desa/"+project+"/usuari/"+student, token, zip);
         if (projectId == null) {
             LOGGER.fatal("No project ID received. Check your project id and try again.");
             return;
         }
         
         LOGGER.info("3/4: Compiling the project...");
-        client.compile(HTTP_HOST+"projectes/compila/"+projectId, token);
+        client.compile(HTTP_HOST+"projectes/compila/"+projectId+"/usuari/"+student, token);
         
         LOGGER.info("4/4: Evaluating the project...");
-        client.evaluate(HTTP_HOST+"enviaments/corregeix", token, projectId);
+        client.evaluate(HTTP_HOST+"enviaments/corregeix/usuari/"+student, token, projectId);
         
         LOGGER.info("Done!");
     }
