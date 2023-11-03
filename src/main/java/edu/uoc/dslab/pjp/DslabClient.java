@@ -222,30 +222,32 @@ public class DslabClient {
         String student = args[4];
         String zip = args[5];
 
-        LOGGER.info("Starting DSLab client...");
-        DslabClient client = new DslabClient();
+        LOGGER.debug(tenant+" "+project+" "+username+" "+password+" "+student+" "+zip);
 
-        LOGGER.info("1/4: Getting token...");
-        String token = client.token(HTTP_HOST+"token", tenant, username, password);
-        if (token == null) {
-            LOGGER.fatal("No token received. Check your credentials and try again.");
-            return;
-        }
+        // LOGGER.info("Starting DSLab client...");
+        // DslabClient client = new DslabClient();
+
+        // LOGGER.info("1/4: Getting token...");
+        // String token = client.token(HTTP_HOST+"token", tenant, username, password);
+        // if (token == null) {
+        //     LOGGER.fatal("No token received. Check your credentials and try again.");
+        //     return;
+        // }
         
-        LOGGER.info("2/4: Submitting the project...");
-        String projectId = client.submit(HTTP_HOST+"projectes/desa/"+project+"/usuari/"+student, token, zip);
-        if (projectId == null) {
-            LOGGER.fatal("No project ID received. Check your project id and try again.");
-            return;
-        }
+        // LOGGER.info("2/4: Submitting the project...");
+        // String projectId = client.submit(HTTP_HOST+"projectes/desa/"+project+"/usuari/"+student, token, zip);
+        // if (projectId == null) {
+        //     LOGGER.fatal("No project ID received. Check your project id and try again.");
+        //     return;
+        // }
         
-        LOGGER.info("3/4: Compiling the project...");
-        client.compile(HTTP_HOST+"projectes/compila/"+projectId+"/usuari/"+student, token);
+        // LOGGER.info("3/4: Compiling the project...");
+        // client.compile(HTTP_HOST+"projectes/compila/"+projectId+"/usuari/"+student, token);
         
-        LOGGER.info("4/4: Evaluating the project...");
-        client.evaluate(HTTP_HOST+"enviaments/corregeix/usuari/"+student, token, projectId);
+        // LOGGER.info("4/4: Evaluating the project...");
+        // client.evaluate(HTTP_HOST+"enviaments/corregeix/usuari/"+student, token, projectId);
         
-        LOGGER.info("Done!");
+        // LOGGER.info("Done!");
     }
 
 }
