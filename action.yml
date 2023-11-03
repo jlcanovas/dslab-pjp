@@ -36,15 +36,3 @@ runs:
     - name: sets the path
       run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
-    - name: compile with Maven
-      run: mvn compile 
-      shell: bash
-    - name: creates zip for the project
-      run: zip -r pec.zip src/ 
-      shell: bash
-    - name: Submits via DSLab
-      run: mvn compile exec:java -Dexec.args="${{ inputs.tenant }} ${{ inputs.project }} ${{ inputs.user }} ${{ inputs.pass }} ${{ inputs.student }} pec.zip"
-      shell: bash
-    - name: removes the zip file
-      run: rm -f pec.zip
-      shell: bash
