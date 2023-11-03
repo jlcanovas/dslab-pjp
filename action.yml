@@ -25,7 +25,6 @@ runs:
   steps:
     - name: setups Java
       uses: actions/setup-java@v3
-      working-directory: ${{ github.action_path }}
       with:
         distribution: "temurin"
         java-version: "11"
