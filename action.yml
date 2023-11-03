@@ -29,11 +29,8 @@ runs:
         distribution: "temurin"
         java-version: "11"
         cache: "maven"
-    - name: print path
-      run: echo "${{ github.action_path }}"
-      shell: bash
     - name: compile with Maven
-      run: mvn compile 
+      run: mvn compile --file ${{ github.action_path }}/pom.xml
       shell: bash
     - name: checkout student repo
       uses: actions/checkout@v3
@@ -43,7 +40,7 @@ runs:
       run: zip -r pec.zip src/ 
       shell: bash
     - name: Submits via DSLab
-      run: mvn exec:java -Dexec.args="${{ inputs.tenant }} ${{ inputs.project }} ${{ inputs.user }} ${{ inputs.pass }} ${{ inputs.student }} pec.zip"
+      run: mvn compile exec:java -Dexec.args="${{ inputs.tenant }} ${{ inputs.project }} ${{ inputs.user }} ${{ inputs.pass }} ${{ inputs.student }} pec.zip"
       shell: bash
     - name: removes the zip file
       run: rm -f pec.zip
