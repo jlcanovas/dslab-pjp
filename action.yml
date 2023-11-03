@@ -5,6 +5,22 @@ inputs:
     description: 'Derivative token for using the GitHub REST API'
     default: '${{ github.token }}'
     required: true
+  tenant : 
+    description: 'DSLab tenant'
+    default: ${{ secrets.TENANT }}
+    required: true
+  project : 
+    description: 'DSLab project'
+    default: ${{ secrets.PROJECT }}
+    required: true
+  user: 
+    description: 'User with permission to submit projects'
+    default: ${{ secrets.USER }}
+    required: true
+  pass: 
+    description: 'User password'
+    default: ${{ secrets.PASS }}
+    required: true
   student:
     description: "The student doing the submission"
     required: true
@@ -28,12 +44,7 @@ runs:
       run: zip -r pec.zip src/ 
       shell: bash
     - name: Submits via DSLab
-      secrets:
-        tenant : ${{ secrets.TENANT }}
-        project : ${{ secrets.PROJECT }}
-        user: ${{ secrets.USER }}
-        pass: ${{ secrets.PASS }}
-      run: mvn compile exec:java -Dexec.args="$tenant $project $user $pass ${{ inputs.student }} pec.zip"
+      run: mvn compile exec:java -Dexec.args="${{ inputs.tenant }} ${{ inputs.project }} ${{ inputs.user }} ${{ inputs.pass }} ${{ inputs.student }} pec.zip"
       shell: bash
     - name: removes the zip file
       run: rm -f pec.zip
