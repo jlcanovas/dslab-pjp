@@ -23,6 +23,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: checkout student repo
+      uses: actions/checkout@v3
+      with:
+        token: ${{ inputs.GITHUB_TOKEN }}
     - name: setups Java
       uses: actions/setup-java@v3
       with:
@@ -32,10 +36,6 @@ runs:
     - name: compile with Maven
       run: mvn compile --file ${{ github.action_path }}/pom.xml
       shell: bash
-    - name: checkout student repo
-      uses: actions/checkout@v3
-      with:
-        token: ${{ inputs.GITHUB_TOKEN }}
     - name: creates zip for the project
       run: zip -r pec.zip src/ 
       shell: bash
