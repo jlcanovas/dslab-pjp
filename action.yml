@@ -44,10 +44,10 @@ runs:
         token: ${{ inputs.github_token }}
         path: "tgt"
     - name: creates zip for the project
-      run: zip -r pec.zip tgt/ 
+      run: zip -r pec.zip tgt/ -x "tgt/.git/*"
       shell: bash
     - name: Submits via DSLab
-      run: mvn compile exec:java -Dexec.args="${{ inputs.tenant }} ${{ inputs.project }} ${{ inputs.user }} ${{ inputs.pass }} ${{ inputs.student }} pec.zip"
+      run: mvn exec:java -Dexec.args="${{ inputs.tenant }} ${{ inputs.project }} ${{ inputs.user }} ${{ inputs.pass }} ${{ inputs.student }} pec.zip"
       shell: bash
     - name: removes the zip file
       run: rm -f pec.zip
