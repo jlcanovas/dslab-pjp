@@ -18,13 +18,13 @@ runs:
       shell: bash
     - name: checkout student repo
       uses: actions/checkout@v3
-      with:
+      secrets:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: creates zip for the project
       run: zip -r pec.zip src/ 
       shell: bash
     - name: Submits via DSLab
-      env:
+      secrets:
         tenant : ${{ secrets.TENANT }}
         project : ${{ secrets.PROJECT }}
         user: ${{ secrets.USER }}
