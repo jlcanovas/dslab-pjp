@@ -23,11 +23,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: sets the path
-      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash
     - name: setups Java
       uses: actions/setup-java@v3
+      working-directory: ${{ github.action_path }}
       with:
         distribution: "temurin"
         java-version: "11"
