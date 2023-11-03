@@ -1,7 +1,7 @@
 name: "DSLab submitter"
 description: "Submits an assignment to DSLab"
 inputs:
-  strudent:
+  student:
     description: "The student doing the submission"
     required: true
 runs:
