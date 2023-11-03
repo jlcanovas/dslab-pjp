@@ -23,9 +23,17 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+      with:
+        repository: "jlcanovas/dslab-pjp"
+        token: ${{ inputs.github_token }}
     - name: setups Java
       uses: actions/setup-java@v3
       with:
         distribution: "temurin"
         java-version: "11"
         cache: "maven"
+    - name: compile with Maven
+      run: mvn compile 
+      shell: bash
