@@ -24,6 +24,11 @@ runs:
       run: zip -r pec.zip src/ 
       shell: bash
     - name: Submits via DSLab
-      run: mvn compile exec:java -Dexec.args="${{ secrets.TENANT }} ${{ secrets.PROJECT }} ${{ secrets.USER }} ${{ secrets.PASS }} ${{ inputs.student }} pec.zip"
+      env:
+        tenant : ${{ secrets.TENANT }}
+        project : ${{ secrets.PROJECT }}
+        user: ${{ secrets.USER }}
+        pass: ${{ secrets.PASS }}
+      run: mvn compile exec:java -Dexec.args="$tenant $project $user $pass ${{ inputs.student }} pec.zip"
     - name: removes the zip file
       run: rm -f pec.zip
