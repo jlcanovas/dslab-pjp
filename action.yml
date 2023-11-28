@@ -20,9 +20,6 @@ inputs:
   student:
     description: "The student doing the submission"
     required: true
-  repo:
-    description: "The student repository"
-    required: true
 runs:
   using: "composite"
   steps:
@@ -50,7 +47,7 @@ runs:
       run: zip -r pec.zip tgt/ -x "tgt/.git/*"
       shell: bash
     - name: Submits via DSLab
-      run: mvn exec:java -Dexec.args="${{ inputs.tenant }} ${{ inputs.project }} ${{ inputs.user }} ${{ inputs.pass }} ${{ inputs.student }} ${{ inputs.repo }} pec.zip"
+      run: mvn exec:java -Dexec.args="${{ inputs.tenant }} ${{ inputs.project }} ${{ inputs.user }} ${{ inputs.pass }} ${{ inputs.student }} ${{ github.repository }} pec.zip"
       shell: bash
     - name: removes the zip file
       run: rm -f pec.zip
