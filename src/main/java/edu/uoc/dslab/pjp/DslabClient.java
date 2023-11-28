@@ -103,7 +103,7 @@ public class DslabClient {
             // Decomposing the repository name
             String[] repositoryParts = repository.split("-");
             String username = repositoryParts[repositoryParts.length-1];
-            String classroom = repositoryParts[1];
+            String classroom = repositoryParts[2];
             LOGGER.debug("username: " + username + " classroom: " + classroom);
             // Adding headers
             get.addHeader("Nom", username);
