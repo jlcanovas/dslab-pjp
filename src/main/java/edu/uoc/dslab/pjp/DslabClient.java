@@ -41,7 +41,8 @@ public class DslabClient {
     private static String DEFAULT_CHARSET = "UTF-8";
 
     /** URL for DSLab */
-    private static String HTTP_HOST = "https://dpcscodes.uoc.edu/dslab-api/";
+    // private static String HTTP_HOST = "https://dpcscodes.uoc.edu/dslab-api/";
+    private static String HTTP_HOST = "https://sd.uoc.edu:443/dslab-api/";
 
     private static final Logger LOGGER = LogManager.getLogger(DslabClient.class);
 
@@ -119,8 +120,10 @@ public class DslabClient {
             response = client.execute(post);
             // Handle response
             HttpEntity entity = response.getEntity();
+            LOGGER.debug("Entity received: " + entity);
             if (entity != null) {
                 String entityDigested = EntityUtils.toString(entity, DEFAULT_CHARSET);
+                LOGGER.debug("Entity digested: " + entityDigested);
                 JsonObject messageJson = JsonParser.parseString(entityDigested).getAsJsonObject();
                 if (messageJson.getAsJsonObject("data").has("id_projecte")) {
                     result = messageJson.getAsJsonObject("data").get("id_projecte").getAsString();
