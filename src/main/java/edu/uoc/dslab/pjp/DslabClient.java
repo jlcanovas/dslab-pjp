@@ -246,7 +246,9 @@ public class DslabClient {
      * args[1] = DSLab project
      * args[2] = username
      * args[3] = password
-     * args[4] = path to zip file
+     * args[4] = student email
+     * args[5] = repository name
+     * args[6] = zip
      * 
      */
     public static void main(String[] args) {
