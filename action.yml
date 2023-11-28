@@ -50,7 +50,7 @@ runs:
       run: zip -r pec.zip tgt/ -x "tgt/.git/*"
       shell: bash
     - name: Submits via DSLab
-      run: mvn exec:java -Dexec.args="${{ inputs.tenant }} ${{ inputs.project }} ${{ inputs.user }} ${{ inputs.pass }} ${{ inputs.student }} pec.zip"
+      run: mvn exec:java -Dexec.args="${{ inputs.tenant }} ${{ inputs.project }} ${{ inputs.user }} ${{ inputs.pass }} ${{ inputs.student }} ${{ inputs.repo }} pec.zip"
       shell: bash
     - name: removes the zip file
       run: rm -f pec.zip
