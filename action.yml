@@ -20,6 +20,9 @@ inputs:
   student:
     description: "The student doing the submission"
     required: true
+  repo:
+    description: "The student repository"
+    required: true
 runs:
   using: "composite"
   steps:
