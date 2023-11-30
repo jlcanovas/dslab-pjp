@@ -102,7 +102,11 @@ public class DslabClient {
             get.addHeader("Authorization", "Bearer " + token);
             // Decomposing the repository name
             String[] repositoryParts = repository.split("-");
-            String username = repositoryParts[repositoryParts.length-1];
+            String username = repositoryParts[5];
+            // Building the username
+            if (repositoryParts.length > 6) 
+                for (int i = 6; i < repositoryParts.length; i++) 
+                    username += "-" + repositoryParts[i];
             String classroom = repositoryParts[2];
             LOGGER.debug("username: " + username + " classroom: " + classroom);
             // Adding headers
